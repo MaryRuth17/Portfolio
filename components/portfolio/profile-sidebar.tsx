@@ -258,13 +258,13 @@ export function ProfileSidebar({ isOpen, onToggle }: ProfileSidebarProps) {
                     {/* Prev / Next arrows */}
                     <button
                       onClick={() => goPhoto(-1)}
-                      className="absolute left-1.5 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-6 h-6 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm transition-all"
+                      className="no-touch-target min-h-0 min-w-0 absolute left-1.5 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-6 h-6 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm transition-all"
                     >
                       <ChevronLeft className="w-3.5 h-3.5 text-white" />
                     </button>
                     <button
                       onClick={() => goPhoto(1)}
-                      className="absolute right-1.5 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-6 h-6 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm transition-all"
+                      className="no-touch-target min-h-0 min-w-0 absolute right-1.5 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-6 h-6 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm transition-all"
                     >
                       <ChevronRight className="w-3.5 h-3.5 text-white" />
                     </button>
@@ -272,17 +272,18 @@ export function ProfileSidebar({ isOpen, onToggle }: ProfileSidebarProps) {
                 </div>
 
                 {/* Dot indicators */}
-                <div className="flex items-center justify-center gap-1.5">
+                <div className="flex items-center justify-center gap-1 sm:gap-1.5">
                   {featuredPhotos.map((_, i) => (
                     <button
                       key={i}
                       onClick={() => { setPhotoDir(i > photoIndex ? 1 : -1); setPhotoIndex(i); }}
                       className={cn(
-                        "rounded-full transition-all duration-300",
+                        "no-touch-target min-h-0 min-w-0 rounded-full transition-all duration-300 ease-out",
                         i === photoIndex
-                          ? "w-4 h-1.5 bg-accent"
-                          : "w-1.5 h-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60"
+                          ? "h-1 w-3 sm:h-1.5 sm:w-4 bg-accent"
+                          : "h-1 w-1 sm:h-1.5 sm:w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/60"
                       )}
+                      aria-label={`Go to photo ${i + 1}`}
                     />
                   ))}
                 </div>

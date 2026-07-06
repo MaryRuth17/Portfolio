@@ -131,13 +131,13 @@ export function ProjectsSection() {
   const { ref: certGridRef, isRevealed: certGridRevealed } = useScrollReveal({ triggerOnce: false });
   const { ref: expHeaderRef, isRevealed: expHeaderRevealed } = useScrollReveal({
     triggerOnce: false,
-    threshold: 0.05,
-    rootMargin: "200px 0px -100px 0px",
+    threshold: 0.02,
+    rootMargin: "200px 0px 150px 0px",
   });
   const { ref: expContentRef, isRevealed: expContentRevealed } = useScrollReveal({
     triggerOnce: false,
     threshold: 0.02,
-    rootMargin: "200px 0px -50px 0px",
+    rootMargin: "200px 0px 150px 0px",
   });
 
   const [activeExpTab, setActiveExpTab] = useState<"professional" | "organizational">("organizational");
@@ -281,7 +281,7 @@ export function ProjectsSection() {
           </div>
 
           {/* Navigation controls */}
-          <div className="mt-5 max-w-3xl mx-auto flex items-center justify-between gap-4">
+          <div className="mt-5 max-w-3xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
             {/* Back button */}
             <button
               onClick={goPrev}
@@ -293,16 +293,16 @@ export function ProjectsSection() {
             </button>
 
             {/* Dot indicators */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               {Array.from({ length: TOTAL_SLIDES }).map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentIndex(i)}
                   className={cn(
-                    "rounded-full transition-all duration-300",
+                    "no-touch-target min-h-0 min-w-0 rounded-full transition-all duration-300 ease-out",
                     i === currentIndex
-                      ? "h-2.5 w-6 bg-accent"
-                      : "h-2 w-2 bg-border hover:bg-accent/50"
+                      ? "h-1.5 w-4 sm:h-2 sm:w-5 md:h-2.5 md:w-6 bg-accent"
+                      : "h-1.5 w-1.5 sm:h-2 sm:w-2 bg-border hover:bg-accent/50"
                   )}
                   aria-label={`Go to slide ${i + 1}`}
                 />

@@ -14,21 +14,32 @@ const themes = [
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0 });
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 4, top: 4, width: 32, height: 32 });
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Update indicator position
+  // Update indicator position and dimensions dynamically based on active button
   useEffect(() => {
     if (!mounted || !containerRef.current) return;
     
     const activeIndex = themes.findIndex(t => t.id === theme);
     if (activeIndex !== -1) {
-      // Each button is 32px (h-8 w-8) + 4px gap
-      setIndicatorStyle({ left: 4 + activeIndex * 36 });
+      const buttons = containerRef.current.querySelectorAll("button");
+      const activeButton = buttons[activeIndex];
+      if (activeButton) {
+        setIndicatorStyle({
+          left: activeButton.offsetLeft,
+          top: activeButton.offsetTop,
+          width: activeButton.offsetWidth,
+          height: activeButton.offsetHeight,
+        });
+        return;
+      }
+      // Fallback
+      setIndicatorStyle({ left: 4 + activeIndex * 36, top: 4, width: 32, height: 32 });
     }
   }, [theme, mounted]);
 
@@ -49,8 +60,13 @@ export function ThemeSwitcher() {
     >
       {/* Animated indicator */}
       <span 
-        className="absolute top-1 h-8 w-8 rounded-full bg-background shadow-sm transition-all duration-300 ease-out"
-        style={{ left: indicatorStyle.left }}
+        className="absolute rounded-full bg-background shadow-sm transition-all duration-300 ease-out"
+        style={{ 
+          left: indicatorStyle.left,
+          top: indicatorStyle.top,
+          width: indicatorStyle.width,
+          height: indicatorStyle.height,
+        }}
       />
       
       {themes.map((themeOption) => {
@@ -60,7 +76,7 @@ export function ThemeSwitcher() {
             key={themeOption.id}
             onClick={() => setTheme(themeOption.id)}
             className={cn(
-              "relative z-10 flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300",
+              "no-touch-target min-h-0 min-w-0 relative z-10 flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300",
               theme === themeOption.id
                 ? "text-foreground"
                 : "text-muted-foreground hover:text-foreground"

@@ -130,8 +130,8 @@ export default function Portfolio() {
           });
         },
         {
-          threshold: 0.2,
-          rootMargin: "0px",
+          threshold: 0.02,
+          rootMargin: "150px 0px",
         }
       );
 

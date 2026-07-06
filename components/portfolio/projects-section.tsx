@@ -131,13 +131,13 @@ export function ProjectsSection() {
   const { ref: certGridRef, isRevealed: certGridRevealed } = useScrollReveal({ triggerOnce: false });
   const { ref: expHeaderRef, isRevealed: expHeaderRevealed } = useScrollReveal({
     triggerOnce: false,
-    threshold: 0.05,
-    rootMargin: "200px 0px -100px 0px",
+    threshold: 0.02,
+    rootMargin: "200px 0px 150px 0px",
   });
   const { ref: expContentRef, isRevealed: expContentRevealed } = useScrollReveal({
     triggerOnce: false,
     threshold: 0.02,
-    rootMargin: "200px 0px -50px 0px",
+    rootMargin: "200px 0px 150px 0px",
   });
 
   const [activeExpTab, setActiveExpTab] = useState<"professional" | "organizational">("organizational");

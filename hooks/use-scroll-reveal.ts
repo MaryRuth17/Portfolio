@@ -11,7 +11,7 @@ interface UseScrollRevealOptions {
 export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
   options: UseScrollRevealOptions = {}
 ) {
-  const { threshold = 0.1, rootMargin = "0px 0px -100px 0px", triggerOnce = false } = options;
+  const { threshold = 0.05, rootMargin = "0px 0px 150px 0px", triggerOnce = false } = options;
   const ref = useRef<T>(null);
   const [isRevealed, setIsRevealed] = useState(false);
 
@@ -73,7 +73,7 @@ export function useMultipleScrollReveal(count: number, options?: UseScrollReveal
             });
           }
         },
-        { threshold: options?.threshold || 0.1, rootMargin: options?.rootMargin || "0px" }
+        { threshold: options?.threshold || 0.05, rootMargin: options?.rootMargin || "0px 0px 150px 0px" }
       );
 
       observer.observe(element);

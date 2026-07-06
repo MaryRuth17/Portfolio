@@ -53,22 +53,22 @@ export function AboutSection() {
   const [activeTab, setActiveTab] = useState<'Public Relations' | 'Journalism' | 'Student Leadership'>('Public Relations');
   const { ref: headerRef, isRevealed: headerRevealed } = useScrollReveal({ 
     triggerOnce: false, 
-    threshold: 0.05, 
-    rootMargin: "200px 0px -100px 0px" 
+    threshold: 0.02, 
+    rootMargin: "200px 0px 150px 0px" 
   });
   const { ref: educationRef, isRevealed: educationRevealed } = useScrollReveal({ 
     triggerOnce: false, 
-    threshold: 0.05, 
-    rootMargin: "0px 0px -100px 0px" 
+    threshold: 0.02, 
+    rootMargin: "0px 0px 150px 0px" 
   });
   const { ref: otherSkillsRef, isRevealed: otherSkillsRevealed } = useScrollReveal({ 
     triggerOnce: false, 
-    threshold: 0.05, 
-    rootMargin: "0px 0px -100px 0px" 
+    threshold: 0.02, 
+    rootMargin: "0px 0px 150px 0px" 
   });
   const { ref: academicRef, isRevealed: academicRevealed } = useScrollReveal({ 
     triggerOnce: false, 
-    threshold: 0.05, 
+    threshold: 0.02, 
     rootMargin: "0px 0px 300px 0px" 
   });
 

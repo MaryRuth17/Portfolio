@@ -168,7 +168,7 @@ export default function Portfolio() {
         {/* Scroll Velocity Transition - Large and tilted */}
         <div className="overflow-hidden sm:-rotate-2 sm:scale-110 my-4 sm:my-8 xl:my-12">
           <ScrollVelocity
-            texts={["Software Development", "Cybersecurity"]}
+            texts={["Software Development", "Machine Learning & AI"]}
             velocity={120}
             damping={50}
             stiffness={400}
